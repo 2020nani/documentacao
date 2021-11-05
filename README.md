@@ -9,9 +9,9 @@ Para executar o projeto, sera necessario instalar os seguintes programas em seu 
 
 Para iniciar o projeto e necessario clonar o projeto do Github num diretorio de sua preferencia com os seguintes comandos:
 
-cd "diretorio de sua preferencia"
-git clone https://github.com/2020nani/documentacao.git
-cd documentacao/endpoint
+- cd "diretorio de sua preferencia"
+- git clone https://github.com/2020nani/documentacao.git
+- cd documentacao/endpoint
 
 ## Desenvolvimento
 
