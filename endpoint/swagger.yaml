@@ -1,0 +1,150 @@
+openapi: 3.0.0
+info:
+  title: Api Geolocalização
+  description: Api codificação de endereços e geolocalização.
+  termsOfService: A ser definido
+  contact:
+    email : contele@hotmail.com
+  version: 0.0.1
+servers:
+  - url: https://<host>/api/geocode
+    description: Servidor Produção
+  - url: http://localhost:3333/api/v1/
+    description: Servidor Desenvolvimento
+paths:
+  /geocode:
+    get:
+      summary: Retorna multiplos endereços conforme as coordenadas passadas na requisição.
+      description: Retorna uma lista com os endereços referentes as coordenadas recebidas na requisição
+      parameters:
+        - name: source
+          in: query
+          required: false
+          description: "Enum que identifica a plataforma de geolocalização"
+        - name: coordenadas
+          in: query
+          required: false
+          description: "Array de coordenadas enviado na requisição"
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                latitude:
+                  type: number
+                longitude:
+                  type: number
+      responses:
+        "200": # status code
+          description: Array de endereços conforme as coordenadas recebidas
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/EnderecosResponse"
+  /address:
+    get:
+      summary: Retorna multiplas coordenadas conforme endereços passados na requisição.
+      description: Retorna uma lista com a Geolocalização dos endereços passados na requisição
+      parameters:
+        - name: source
+          in: query
+          required: false
+          description: "Enum que identifica a plataforma de geolocalização"
+        - name: coordenadas
+          in: query
+          required: false
+          description: "Array de endereços enviado na requisição"
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                address:
+                  type: string
+      responses:
+        "200": # status code
+          description: Array de coordenadas  conforme os endereços recebidos
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/CoordenadasResponse"
+components:
+  schemas:
+    CoordenadasResponse:
+      type: object
+      properties:
+        formattedAddress:
+          type: string
+        latitude:
+          type: string
+        longitude:
+          type: string
+        extra:
+          type: object
+          properties:
+            premise:
+              type: boolean
+            subpremise:
+              type: boolean
+            neighborhood:
+              type: string
+            establishment:
+              type: boolean
+        administrativeLevels:
+          type: array
+        streetNumber:
+          type: string
+        streetName:
+          type: string
+        city:
+          type: string
+        country:
+          type: string
+        countryCode:
+          type: string
+        zipcode:
+          type: string
+        state:
+          type: string
+        accuracy:
+          type: string
+    EnderecosResponse:
+      type: object
+      properties:
+        formattedAddress:
+          type: string
+        latitude:
+          type: string
+        longitude:
+          type: string
+        extra:
+          type: object
+          properties:
+            premise:
+              type: boolean
+            subpremise:
+              type: boolean
+            neighborhood:
+              type: string
+            establishment:
+              type: boolean
+        administrativeLevels:
+          type: array
+        streetNumber:
+          type: string
+        streetName:
+          type: string
+        city:
+          type: string
+        country:
+          type: string
+        countryCode:
+          type: string
+        zipcode:
+          type: string
+        state:
+          type: string
+        accuracy:
+          type: string
