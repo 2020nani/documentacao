@@ -4,7 +4,7 @@ info:
   description: Api codificação de endereços e geolocalização.
   termsOfService: A ser definido
   contact:
-    email : contele@hotmail.com
+    email: contele@hotmail.com
   version: 0.0.1
 servers:
   - url: https://<host>/api/geocode
@@ -21,6 +21,9 @@ paths:
           in: query
           required: false
           description: "Enum que identifica a plataforma de geolocalização"
+          schema:
+            type: string
+            enum: [google,geoportal,default]
         - name: coordenadas
           in: query
           required: false
@@ -51,6 +54,9 @@ paths:
           in: query
           required: false
           description: "Enum que identifica a plataforma de geolocalização"
+          schema:
+            type: string
+            enum: [google,geoportal,default]
         - name: coordenadas
           in: query
           required: false
